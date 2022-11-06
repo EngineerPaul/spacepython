@@ -1,0 +1,66 @@
+body {
+    background: rgb(245, 245, 241); /* Цвет фона */
+}
+
+/* base.html */
+/* Создание горизонтальной прокрутки */
+.testimonial-group > .row {
+overflow-x: auto;
+white-space: nowrap;
+}
+.testimonial-group > .row > .col-sm-4 {
+display: inline-block;
+float: none;
+}
+
+/* index.html */
+.card {
+    margin-bottom: 15px; /* добавляет расстояние между карточками */
+}
+
+.card-body {
+    padding-top: 10px; /* убирает отступ от границы в карточке */
+}
+
+.theme {
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    padding: 5px; /* Поля вокруг текста */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.card a {
+    text-decoration: none;
+    color: black;
+}
+
+.d-block > .row > p > a {
+    padding: 6px;
+    text-align: center;
+    margin: 3px 5px;
+}
+
+/* 3 following styles are used for info.html */
+.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-block ul li {
+    margin-left: 600px;
+}
+
+.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-none.d-xxl-block ul li {
+    margin-left: 600px;
+}
+
+.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-block.d-xxl-none ul li {
+    margin-left: 0px;
+}
+
+/* remove display of string menu scroll bar */
+.string-menu {
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.string-menu::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

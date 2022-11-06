@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<h3>{% translate "Authenticate" %}</h3>
+<div class="row">
+    <div class="col" style="max-width: 400px;">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type='submit' class='btn btn-primary btn-block'>{% translate "Log in" %}</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

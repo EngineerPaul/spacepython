@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<h3>{% translate "Registration" %}</h3>
+<div class="row">
+    <div class="col" style="max-width: 400px;">
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_password" class="form-label">{{ form.password.label }}</label>
+                {{ form.password }}
+                <div class="invalid-feedback">
+                    {{ form.password.errors }}
+                </div>
+            </p>
+            <p>
+                <label for="id_first_name" class="form-label">{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+                <div class="invalid-feedback">
+                    {{ form.first_name.errors }}
+                </div>
+            </p>
+            <p>
+                <label for="id_phone" class="form-label">{{ form.phone.label }}</label>
+                {{ form.phone }}
+                <div style="margin-bottom: 0; margin-left: 13px; margin-top: -18px;color: #8f9397; font-size: 10pt;">{% translate "options" %}</div>
+                <div class="invalid-feedback">
+                    {{ form.phone.errors }}
+                </div>
+            </p>
+            <p>
+                <label for="id_telegram" class="form-label">{{ form.telegram.label }}</label>
+                {{ form.telegram }}
+                <div style="margin-bottom: 0; margin-left: 13px; margin-top: -18px;color: #8f9397; font-size: 10pt;">{% translate "options" %}</div>
+                <div class="invalid-feedback">
+                    {{ form.telegram.errors }}
+                </div>
+                <p style="color: black; font-size: 9pt; margin: 3px 0px;">
+                    {% translate "How to find out a telegram nickname on a " %}
+                    <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#telegram_computer">{% translate "computer" %}</a>
+                    {% translate " and " %}
+                    <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#telegram_phone">{% translate "phone" %}</a>?
+                </p>
+            </p>
+            <button type='submit' class='btn btn-primary btn-block'>{% translate "Send" %}</button>
+        </form>
+    </div>
+</div>
+
+{% include 'main_app/inc/telegram_modal_for_computer.html' %}
+{% include 'main_app/inc/telegram_modal_for_phone.html' %}
+
+{% endblock content %}

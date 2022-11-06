@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load extra_tags %}
+
+{% block content %}
+<div class="container testimonial-group">
+    <div class="row text-center">
+        <div class="row flex-nowrap">
+            {% for day, lesson_by_day in lessons.items %}
+                <div class="col" style="min-width: 140px; padding: 0;">
+                    <h5 style="margin-bottom: 0rem">{{day|date:"l"}}</h5>
+                    <p>{{day|date:"j E"}}</p>
+                    
+                    {% for lesson in lesson_by_day %}
+                        {% is_TimeBlock lesson as is_block %}
+                        {% if is_block %}
+                            {% include 'main_app/inc/card_of_blocked_time.html' %}
+                        {% else %}
+                            {% include 'main_app/inc/card_of_lesson.html'%}
+                        {% endif %}
+
+                        {% if request.user.is_staff %}
+                            {% include "main_app/inc/_lesson_modal.html" %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="d-none d-sm-none d-md-block">
+    <p style="color: #9a9ea3;">{% translate "Horizontal scrolling is possible with the wheel and the Shift key pressed" %}</p>
+</div>
+{% endblock content %}

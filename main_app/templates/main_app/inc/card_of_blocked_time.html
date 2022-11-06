@@ -1,0 +1,7 @@
+<div class="card" style="margin: 10px auto; width: 116px; height: 40px;">
+    <div class="card-body" style="padding: 10px; background-color: rgb(255, 200, 200); position: relative;">
+        <h6 style="margin-bottom: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+            {{ lesson.start_time }}-{% if lesson.end_time|date:"G:i" != '23:00' %}{{ lesson.end_time }}{% else %}24:00{% endif %}
+        </h6>
+    </div>
+</div>

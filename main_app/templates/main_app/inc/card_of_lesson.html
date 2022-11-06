@@ -1,0 +1,18 @@
+<div class="card" style="margin: 10px auto; width: 116px; height: 40px;">
+    {% if request.user.is_staff %}
+    <!-- Link is a modal trigger -->
+    <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#M_lesson_{{lesson.pk}}" style="height: inherit;">
+    {% endif %}
+        {% if request.user == lesson.student %}
+        <div class="card-body" style="background-color: rgb(167, 255, 226); padding: 10px; height: inherit; position: relative;">
+        {% else %}
+        <div class="card-body" style="background-color: rgb(253, 216, 171); padding: 10px; height: inherit; position: relative;">
+        {% endif %} 
+            <h6 style="margin-bottom: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                {{lesson.time|date:"G:i"}}
+            </h6>
+        </div>
+    {% if request.user.is_staff %}
+    </a>
+    {% endif %}
+</div>

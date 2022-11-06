@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <div class="container">
+        <div class="row flex-nowrap">
+            <div class="col-2" style="min-width: 200px;">
+                {% include 'main_app/management/inc/_sidebar_menu.html' %}
+            </div>
+            <div class="col" style="padding-left: 50px;">
+                <h3>{% translate "Time blocker" %}</h3>
+                <div class="row">
+                    <div class="col-4" style="min-width: 300px; max-width: 400px; margin-right: 70px;">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button type='submit' class='btn btn-primary btn-block'>{% translate "Block" %}</button>
+                        </form>
+                    </div>
+                    <div class="col" style="max-width: 700px; min-width: 400px;">
+                        {% if blocked_times %}
+                        <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block" style="margin-top: -50px;">
+                            {% include "main_app/management/inc/_time_blocker_table.html" %}
+                        </div>
+                        <div class="d-none d-sm-none d-md-block d-lg-block d-xl-none" style="margin-top: 15px;">
+                            {% include "main_app/management/inc/_time_blocker_table.html" %}
+                        </div>
+                        {% else %}
+                            <p style="font-size: 14pt; color: rgb(168, 168, 168);">
+                                {% translate "Blocks don't exist" %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    {% include 'main_app/management/inc/_string_menu.html' %}
+    <div class="row">
+        <div class="col-4" style="min-width: 300px; max-width: 400px; margin: auto;">
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class="text-center">
+                    <button type='submit' class='btn btn-primary btn-block'>{% translate "Block" %}</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class="col" style="max-width: 700px; min-width: 400px; padding-top: 15px; padding-left: 0;">
+            {% if blocked_times %}
+                {% include "main_app/management/inc/_time_blocker_table.html" %}
+            {% else %}
+                <p style="font-size: 14pt; color: rgb(168, 168, 168); text-align: center;">
+                    {% translate "Blocks don't exist" %}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

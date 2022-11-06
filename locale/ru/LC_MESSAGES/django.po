@@ -1,0 +1,705 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-30 17:40+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\main_app\forms.py:19
+#: .\main_app\templates\main_app\lessons_by_student.html:10
+msgid "Name"
+msgstr "Имя"
+
+#: .\main_app\forms.py:22
+msgid "Enter your name"
+msgstr "Введите Ваше имя"
+
+#: .\main_app\forms.py:27 .\main_app\forms.py:405
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:23
+#: .\main_app\templates\main_app\lessons_by_student.html:12
+msgid "Phone"
+msgstr "Телефон"
+
+#: .\main_app\forms.py:50 .\main_app\validators.py:25
+msgid "You must provide a phone number or telegram nickname"
+msgstr "Вам необходимо указать номер телефона или ник в телеграм"
+
+#: .\main_app\forms.py:59 .\main_app\validators.py:33
+msgid "Phone number must be digits only"
+msgstr "Номер телефона должен состоять только из чисел"
+
+#: .\main_app\forms.py:64 .\main_app\validators.py:35
+msgid "Phone number must contain 11 digits"
+msgstr "Номер телефона должен содержать 11 чисел"
+
+#: .\main_app\forms.py:73 .\main_app\validators.py:41
+msgid "Telegram nickname must start with '@..'"
+msgstr "Телеграм ник должен начинаться с @"
+
+#: .\main_app\forms.py:79 .\main_app\validators.py:45
+msgid "Telegram nickname doen't contain spaces"
+msgstr "Телеграм ник не может содержать пробелы"
+
+#: .\main_app\forms.py:89
+msgid "Phone / Telegram"
+msgstr "Телефон / Телеграм"
+
+#: .\main_app\forms.py:92
+msgid "89001234567 or @nickname"
+msgstr "89001234567 или @nickname"
+
+#: .\main_app\forms.py:101 .\main_app\forms.py:211
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:16
+#: .\main_app\templates\main_app\lessons_by_student.html:27
+#: .\main_app\templates\main_app\management\inc\_student_lessons.html:13
+msgid "Time"
+msgstr "Время"
+
+#: .\main_app\forms.py:108 .\main_app\forms.py:219 .\main_app\forms.py:272
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:15
+#: .\main_app\templates\main_app\lessons_by_student.html:26
+#: .\main_app\templates\main_app\management\inc\_student_lessons.html:12
+#: .\main_app\templates\main_app\management\inc\_time_blocker_table.html:11
+msgid "Date"
+msgstr "Дата"
+
+#: .\main_app\forms.py:124 .\main_app\forms.py:235
+msgid "Time must be in 'hours' or 'hours:minutes' format"
+msgstr "Время должно быть в формате 'час' или 'час:минута'"
+
+#: .\main_app\forms.py:140 .\main_app\validators.py:104
+msgid "The date {} has already arrived"
+msgstr "Нельзя указывать прошедшие даты"
+
+#: .\main_app\forms.py:146 .\main_app\validators.py:108
+msgid "Please don't book a lesson earlier then {} days in advace"
+msgstr "Записаться на урок можно не ранее, чем за {} дней"
+
+#: .\main_app\forms.py:155 .\main_app\validators.py:115
+msgid "Please, sign up for a lesson {} hours before to start"
+msgstr "Пожалуйста, записывайтеся на урок за {} часа до начала"
+
+#: .\main_app\forms.py:162 .\main_app\validators.py:121
+msgid "The time {} is too early"
+msgstr "Это время ({}) слишком раннее"
+
+#: .\main_app\forms.py:165 .\main_app\validators.py:123
+msgid "The time {} is too late"
+msgstr "Это время ({}) слишком позднее"
+
+#: .\main_app\forms.py:176 .\main_app\validators.py:70
+#: .\main_app\validators.py:132
+msgid "Some lesson is already scheduled for {} that day"
+msgstr "На это время ({}) уже существует запись"
+
+#: .\main_app\forms.py:189 .\main_app\forms.py:260 .\main_app\validators.py:82
+#: .\main_app\validators.py:142
+msgid "This time is blocked"
+msgstr "Это время заблокировано"
+
+#: .\main_app\forms.py:201
+msgid "Student"
+msgstr "Студент"
+
+#: .\main_app\forms.py:248 .\main_app\validators.py:74
+msgid "Please, select a student"
+msgstr "Пожалуйста, выберите студента"
+
+#: .\main_app\forms.py:281
+#: .\main_app\templates\main_app\management\inc\_time_blocker_table.html:12
+msgid "Start time"
+msgstr "Время начала"
+
+#: .\main_app\forms.py:289
+#: .\main_app\templates\main_app\management\inc\_time_blocker_table.html:13
+msgid "End time"
+msgstr "Время окончания"
+
+#: .\main_app\forms.py:309 .\main_app\validators.py:165
+msgid "'Start time' must be earlier than 'End time'"
+msgstr "Начальное время должно быть раньше конечного"
+
+#: .\main_app\forms.py:315 .\main_app\validators.py:169
+msgid "'Start time' and 'End time' can't be equal"
+msgstr "Начальное и конечное время не могут быть равны"
+
+#: .\main_app\forms.py:332 .\main_app\validators.py:184
+msgid "The new block overlaps the existing one"
+msgstr "Новая блокировка перекрывает существующую"
+
+#: .\main_app\forms.py:341 .\main_app\validators.py:191
+msgid "Date can't be earlier than today"
+msgstr "Дата не может быть прошедшей"
+
+#: .\main_app\forms.py:349 .\main_app\validators.py:197
+msgid "You are creating the block too early"
+msgstr "Вы создаете блокировку слишком рано"
+
+#: .\main_app\forms.py:359 .\main_app\validators.py:205
+msgid "Your block overlaps an existing lesson"
+msgstr "На время блокировки уже запланирован урок"
+
+#: .\main_app\forms.py:378
+#: .\main_app\templates\main_app\management\inc\_students_table.html:10
+msgid "Student name"
+msgstr "Имя студента"
+
+#: .\main_app\forms.py:384
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:8
+#: .\main_app\templates\main_app\management\inc\_students_table.html:11
+msgid "Alias"
+msgstr "Псевдоним"
+
+#: .\main_app\forms.py:391
+msgid "Usual cost"
+msgstr "Обычная цена"
+
+#: .\main_app\forms.py:398
+msgid "High cost"
+msgstr "Повышенная цена"
+
+#: .\main_app\forms.py:413
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:24
+#: .\main_app\templates\main_app\lessons_by_student.html:15
+#: .\main_app\templates\main_app\management\inc\_students_table.html:12
+msgid "Telegram"
+msgstr ""
+
+#: .\main_app\forms.py:421
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:21
+msgid "Discord"
+msgstr ""
+
+#: .\main_app\forms.py:428
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:18
+msgid "Skype"
+msgstr ""
+
+#: .\main_app\forms.py:435
+msgid "Last login"
+msgstr "Последний вход"
+
+#: .\main_app\forms.py:443
+msgid "Student is active?"
+msgstr "Пользователь активен?"
+
+#: .\main_app\models.py:20
+msgid "Lesson"
+msgstr "Урок"
+
+#: .\main_app\models.py:21
+#: .\main_app\templates\main_app\management\inc\_student_lessons.html:6
+msgid "Lessons"
+msgstr "Уроки"
+
+#: .\main_app\models.py:25
+msgid "The Lesson class: id = {}"
+msgstr "Класс Lesson: id = {}"
+
+#: .\main_app\models.py:45 .\main_app\models.py:46
+msgid "Details"
+msgstr "Детали"
+
+#: .\main_app\models.py:49
+msgid "The UserDetail class: id = {}"
+msgstr "Класс UserDetail: id = {}"
+
+#: .\main_app\models.py:63
+msgid "TimeBlock"
+msgstr "Блокировка времени"
+
+#: .\main_app\models.py:64
+msgid "Timeblocks"
+msgstr "Блокировки времени"
+
+#: .\main_app\services.py:15
+msgid "Monday"
+msgstr "Поендельник"
+
+#: .\main_app\services.py:16
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: .\main_app\services.py:17
+msgid "Wednesday"
+msgstr "Среда"
+
+#: .\main_app\services.py:18
+msgid "Thursday"
+msgstr "Четверг"
+
+#: .\main_app\services.py:19
+msgid "Friday"
+msgstr "Пятница"
+
+#: .\main_app\services.py:20
+msgid "Saturday"
+msgstr "Суббота"
+
+#: .\main_app\services.py:21
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: .\main_app\templates\main_app\add_lesson.html:5
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:12
+msgid "To schedule"
+msgstr "Запланировать"
+
+#: .\main_app\templates\main_app\add_lesson.html:12
+#: .\main_app\templates\main_app\add_lesson.html:25
+msgid "How to take time?"
+msgstr "Как записаться?"
+
+#: .\main_app\templates\main_app\add_lesson.html:13
+#: .\main_app\templates\main_app\add_lesson.html:83
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:19
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:39
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:55
+msgid "How to find out the cost?"
+msgstr "Как узнать стоимость урока?"
+
+#: .\main_app\templates\main_app\add_lesson.html:15
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:21
+#: .\main_app\templates\main_app\management\add_lesson_admin.html:42
+msgid "Add lesson"
+msgstr "Создать"
+
+#: .\main_app\templates\main_app\add_lesson.html:30
+#, python-format
+msgid ""
+"You must choose date and time for recording. You can to sign up for a lesson "
+"%(C_timedelta)s hours before it starts. Before creating a new lesson, visit "
+"the homepage and make the time isn't taken by another person. After creating "
+"a lesson, a label with your time will appear on the homepage. To delete a "
+"lesson, you need to follow the link “My lessons”."
+msgstr ""
+"Для записи Вам необходимо указать дату и время. Записаться на урок можно не "
+"менее, чем за %(C_timedelta)s часа до его начала. Перед созданием нового "
+"урока посетите главную страницу и убедитесь, что время не занято другим "
+"человеком. После создания урока на главной странице появится метка с Вашим "
+"временем. Отменить урок можно, перейдя по вкладе «Мои уроки»."
+
+#: .\main_app\templates\main_app\add_lesson.html:32
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:7
+msgid "There are three types of labels on the homepage:"
+msgstr "На главной странице существует три вида меток:"
+
+#: .\main_app\templates\main_app\add_lesson.html:45
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:20
+msgid "indicates that the time is taken by another person"
+msgstr "показывает, что данное время забронировано другим человеком"
+
+#: .\main_app\templates\main_app\add_lesson.html:56
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:31
+msgid "indicates your own lesson"
+msgstr "указывает на Ваш собственный урок"
+
+#: .\main_app\templates\main_app\add_lesson.html:67
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:42
+msgid "indicates that at this time I will not be able to teach"
+msgstr "показывает, что в данное время я не смогу проводить уроки"
+
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:13
+msgid "First name"
+msgstr "Имя"
+
+#: .\main_app\templates\main_app\inc\_lesson_modal.html:14
+msgid "Salary"
+msgstr "Оплата"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:3
+msgid "Hello!"
+msgstr "Добрый день!"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:5
+#, python-format
+msgid ""
+"I am Teplyakov Sergey (%(age)s years old). I am programming coach. I teach "
+"to work with object-oriented language <nobr>Python 3</nobr>. I taught "
+"greater than <nobr>2 000</nobr> lessons teaching peoples of all ages. I am "
+"ready to help you specific problem or conduct a training lesson based on my "
+"materials."
+msgstr ""
+"Я Тепляков Сергей (%(age)s лет) - репетитор по программированию. Обучаю "
+"работе с объектно-ориентированным языком  <nobr>Python 3</nobr>. Провел "
+"более <nobr>2 000</nobr> уроков, обучая людей всех возрастов. Готов помочь "
+"Вам в решении конкретной задачи или провести обучающий урок по моим "
+"материалам. "
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:8
+msgid "Professional achievements"
+msgstr "Профессиональные достижения"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:11
+msgid ""
+"I have a master’s degree in information system and technology. Theme of my "
+"dissertation is “Monitoring and forecasting of georisks”. The software was "
+"created using Python, JavaScript and WebSocket technology."
+msgstr ""
+"Имею звание магистра информационных систем и технологий. Тема диссертации –  "
+"“мониторинг и прогнозирование георисков”. Программный продукт был написан на "
+"Python, JavaScript c применением технологии WebSocket"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:13
+msgid "I finished course for programmer at ITMO university"
+msgstr "Завершил курс для программистов от университета ITMO"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:14
+msgid ""
+"Received a patent for a computer program (use graph theory and neural "
+"networks for a travel planning)"
+msgstr ""
+"Получил патент на программу для ЭВМ (применение теории графов и нейронных "
+"сетей для планирования путешествий)"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:15
+msgid "I have publications in international digest"
+msgstr "Имею публикации в международных сборниках"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:16
+msgid "Develop many parsers, chat-bots and neural networks"
+msgstr "Создал множество парсеров, чат-ботов и нейронных сетей"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:17
+msgid ""
+"I have experience of teaching activities at a university (St.Petersburg "
+"polytechnic university)"
+msgstr ""
+"Опыт преподавательской деятельности в вузе (Политехнический университет СПБ)"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:21
+msgid "Lesson construction"
+msgstr "Построение урока"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:22
+msgid ""
+"I composes a plan and presentation for every lesson. You can change ratio of "
+"theory and practice. If you want more practice (coding, analysis examples "
+"etc.), then I’m in!"
+msgstr ""
+"На каждое занятие мною будет составлен план урока и презентация. Соотношение "
+"теории и практики устанавливается по Вашему желанию. Если Вы хотите больше "
+"практики: написание кода, разбора примеров и так далее, то я только за!"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:25
+msgid "Payment"
+msgstr "Оплата"
+
+#: .\main_app\templates\main_app\inc\info\_bio.html:26
+#, python-format
+msgid ""
+"Payment by phone number (Tinkoff, Sber). Lesson cost is <nobr>"
+"%(C_salary_common)s</nobr> rub. Cost of an early morning (until <nobr>"
+"%(С_morning_time_markup)s</nobr>) or late evening (after <nobr>"
+"%(C_evening_time_markup)s</nobr>) lesson is <nobr>%(C_salary_high)s</nobr> "
+"rub. Also cost is <nobr>%(C_salary_high)s</nobr> rub when day is overflow "
+"(%(C_lesson_threshold)s lessons per day)."
+msgstr ""
+"Оплата по номеру телефона (Тинькофф, Сбер). Стоимость урока - <nobr>"
+"%(C_salary_common)s</nobr> руб. Рано утром (до <nobr>"
+"%(С_morning_time_markup)s</nobr>) и поздно вечером (после <nobr>"
+"%(C_evening_time_markup)s</nobr>) стоимость повышенная - <nobr>"
+"%(C_salary_high)s</nobr> руб. В переполненные дни (%(C_lesson_threshold)s "
+"урок за день) стоимость также повышенная - <nobr>%(C_salary_high)s</nobr> "
+"руб."
+
+#: .\main_app\templates\main_app\inc\info\_contacts.html:3
+msgid "Contacts"
+msgstr "Контакты"
+
+#: .\main_app\templates\main_app\inc\info\_contacts.html:5
+msgid "Avito announcement "
+msgstr "Объявление на Авито "
+
+#: .\main_app\templates\main_app\inc\info\_contacts.html:5
+msgid "cleek"
+msgstr "клик"
+
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:3
+msgid "How site works?"
+msgstr "Как работает сайт?"
+
+#: .\main_app\templates\main_app\inc\info\_how_site_works.html:5
+#, python-format
+msgid ""
+"You can sign up for a lesson on this site. To do this, you need to register/"
+"log in and choose a suitable time for you. After creating a lesson, a label "
+"with your time will appear on the homepage. Note: before creating a new "
+"lesson, visit the homepage and make the time isn't taken by another person. "
+"You can to sign up for a lesson %(C_timedelta)s hours before it starts. To "
+"delete a lesson, you need to follow the link “My lessons”."
+msgstr ""
+"На этом сайте вы можете записаться ко мне на урок. Для этого Вам будет "
+"необходимо зарегистрироваться/авторизоваться и выбрать удобное для Вас "
+"время. После создания урока на главной странице появится метка с Вашим "
+"временем. Примечание: перед созданием нового урока посетите главную страницу "
+"и убедитесь, что время не занято другим человеком. Записаться на урок можно "
+"не менее, чем за %(C_timedelta)s часа до его начала. Отменить урок можно, "
+"перейдя по вкладе «Мои уроки»."
+
+#: .\main_app\templates\main_app\index.html:33
+msgid ""
+"Horizontal scrolling is possible with the wheel and the Shift key pressed"
+msgstr ""
+"Горизонтальная прокрутка возможна при помощи колесика и зажатой клавиши Shift"
+
+#: .\main_app\templates\main_app\info.html:6
+msgid "About me"
+msgstr "Обо мне"
+
+#: .\main_app\templates\main_app\lessons_by_student.html:6
+#: .\templates\inc\_header_buttons.html:7
+msgid "My lessons"
+msgstr "Мои уроки"
+
+#: .\main_app\templates\main_app\lessons_by_student.html:28
+msgid "Cost"
+msgstr "Стоимость"
+
+#: .\main_app\templates\main_app\login.html:6
+msgid "Authenticate"
+msgstr "Авторизация"
+
+#: .\main_app\templates\main_app\login.html:12
+#: .\templates\inc\_header_buttons.html:12
+msgid "Log in"
+msgstr "Войти"
+
+#: .\main_app\templates\main_app\management\inc\_student_lessons.html:39
+msgid "Lessons don't exist"
+msgstr "Уроков нет"
+
+#: .\main_app\templates\main_app\management\inc\_student_update_form.html:90
+msgid "Save changes"
+msgstr "Сохранить"
+
+#: .\main_app\templates\main_app\management\settings.html:12
+#: .\main_app\views.py:463
+msgid "Settings"
+msgstr "Настройки"
+
+#: .\main_app\templates\main_app\management\settings.html:14
+#, python-format
+msgid ""
+"Work starts at %(С_morning_time)s (included). <br>The lesson cost is higher "
+"until %(С_morning_time_markup)s (not included). <br>The lesson cost is "
+"higher after %(C_evening_time_markup)s (not included). <br>Work ends at "
+"%(C_evening_time)s (not included). "
+msgstr ""
+"Работа начинается с %(С_morning_time)s (включительно). <br>До "
+"%(С_morning_time_markup)s (не включительно) стоимость урока повышена. "
+"<br>После %(C_evening_time_markup)s (не включительно) стоимость урока "
+"повышается. <br>Рабочий день заканчивается в %(C_evening_time)s (не "
+"включительно). "
+
+#: .\main_app\templates\main_app\management\settings.html:17
+#, python-format
+msgid ""
+"The cost of the lesson for beginners is %(C_salary_common)s rubles. <br>The "
+"higher cost of the lesson for beginners is %(C_salary_high)s rubles. "
+msgstr ""
+"Стоимость урока для новеньких - %(C_salary_common)s рублей. <br>Повышенная "
+"стоимость урока для новеньких - %(C_salary_high)s рублей. "
+
+#: .\main_app\templates\main_app\management\settings.html:20
+#, python-format
+msgid ""
+"Registration for the lesson is allowed at least %(C_timedelta)s before it "
+"starts. <br>The number of future days for which students can sign up is "
+"%(C_datedelta)s. "
+msgstr ""
+"Запись на урок разрешена не менее, чем за %(C_timedelta)s до его начала. "
+"<br>Количество будующих дней, на которые можно записаться равно "
+"%(C_datedelta)s. "
+
+#: .\main_app\templates\main_app\management\settings.html:23
+#, python-format
+msgid ""
+"The cost of the lesson be higher when recorded %(C_lesson_threshold)s people "
+"on the same day. "
+msgstr ""
+"Стоимотсь урока становится повышенной, если на один день записалось "
+"%(C_lesson_threshold)s человек. "
+
+#: .\main_app\templates\main_app\management\student_info.html:13
+#: .\main_app\templates\main_app\management\student_info.html:31
+msgid "Student details"
+msgstr "Информация о студенте"
+
+#: .\main_app\templates\main_app\management\students_info.html:13
+#: .\main_app\templates\main_app\management\students_info.html:22
+msgid "Students info"
+msgstr "Информация о студентах"
+
+#: .\main_app\templates\main_app\management\time_blocker.html:13
+#: .\main_app\views.py:622
+msgid "Time blocker"
+msgstr "Блокировка времени"
+
+#: .\main_app\templates\main_app\management\time_blocker.html:19
+#: .\main_app\templates\main_app\management\time_blocker.html:50
+msgid "Block"
+msgstr "Заблокировать"
+
+#: .\main_app\templates\main_app\management\time_blocker.html:32
+#: .\main_app\templates\main_app\management\time_blocker.html:60
+msgid "Blocks don't exist"
+msgstr "Блокировок не запланировано"
+
+#: .\main_app\templates\main_app\registration.html:7
+#: .\templates\inc\_header_buttons.html:13
+msgid "Registration"
+msgstr "Регистрация"
+
+#: .\main_app\templates\main_app\registration.html:29
+#: .\main_app\templates\main_app\registration.html:37
+msgid "options"
+msgstr "необязательно"
+
+#: .\main_app\templates\main_app\registration.html:42
+msgid "How to find out a telegram nickname on a "
+msgstr "Как узнать никнейм в телеграм на "
+
+#: .\main_app\templates\main_app\registration.html:43
+msgid "computer"
+msgstr "компьютере"
+
+#: .\main_app\templates\main_app\registration.html:44
+msgid " and "
+msgstr " и "
+
+#: .\main_app\templates\main_app\registration.html:45
+msgid "phone"
+msgstr "телефоне"
+
+#: .\main_app\templates\main_app\registration.html:48
+msgid "Send"
+msgstr "Отправить"
+
+#: .\main_app\views.py:135 .\main_app\views.py:150
+msgid "You can write to me on telegram @spacepython if you can't login"
+msgstr "Вы можете написать мне в телеграм @spacepython, если не можете войти"
+
+#: .\main_app\views.py:209
+msgid "Registration completed"
+msgstr "Регистрация успешно завершена"
+
+#: .\main_app\views.py:240
+msgid "This phone already exists"
+msgstr "Этот телефон уже существует"
+
+#: .\main_app\views.py:246
+msgid "This telegram nickname already exists"
+msgstr "Этот telegram ник уже существует"
+
+#: .\main_app\views.py:289 .\main_app\views.py:501
+msgid "The cost of a usual lesson is {} ₽"
+msgstr "Стоимость обычного урока - {} ₽"
+
+#: .\main_app\views.py:293 .\main_app\views.py:505
+msgid "The cost of a lesson in the early morning to {} is {} ₽."
+msgstr "Стоимость урока рано утром до {} - {} ₽"
+
+#: .\main_app\views.py:297 .\main_app\views.py:509
+msgid "The cost of a lesson in the late evening to {} is {} ₽."
+msgstr "Стоимость урока поздно вечером после {} - {} ₽"
+
+#: .\main_app\views.py:301 .\main_app\views.py:513
+msgid "The cost of a lesson when day is full ({} lessons per day) is {} ₽."
+msgstr "Стоимость урока в переполненный день ({} уроков в день) - {} ₽"
+
+#: .\main_app\views.py:360 .\main_app\views.py:595
+#, python-brace-format
+msgid ""
+"Lesson successfully created. Date: {0}. Time: {1}. Cost: {2} ₽. Cost is "
+"higher because a lot of people signed up today"
+msgstr ""
+"Урок успешно создан. Дата: {0}. Время: {1}. Стоимость: {2} ₽. Стоимость "
+"урока выше, потому что на этот день записалось слишком много людей"
+
+#: .\main_app\views.py:369 .\main_app\views.py:604
+#, python-brace-format
+msgid "Lesson successfully created. Date: {0}. Time: {1}. Cost: {2} ₽"
+msgstr "Урок успешно создан. Дата: {0}. Время: {1}. Стоимость: {2} ₽"
+
+#: .\main_app\views.py:400
+msgid "Error: the lesson wasn't deleted"
+msgstr "Произошла ошибка: урок не удален"
+
+#: .\main_app\views.py:409
+msgid "The lesson successfully deleted"
+msgstr "Урок успешно удален"
+
+#: .\main_app\views.py:491
+msgid "Add lesson by admin"
+msgstr "Запланировать"
+
+#: .\main_app\views.py:657
+msgid "Block deleted successfully"
+msgstr "Блокировка успешно удалена"
+
+#: .\main_app\views.py:677
+msgid "Block created successfully"
+msgstr "Блокировка успешно создана"
+
+#: .\main_app\views.py:687
+msgid "Students"
+msgstr "Студенты"
+
+#: .\main_app\views.py:762
+msgid "User information changed successfully"
+msgstr "Информация о студенте успешно изменена"
+
+#: .\main_app\views.py:772
+msgid "Lesson deleted successfully"
+msgstr "Урок успешно удален"
+
+#: .\templates\base.html:39 .\templates\base.html:42
+msgid "Do programming, not war"
+msgstr "Занимайтесь программированием, а не войной"
+
+#: .\templates\inc\_header.html:14 .\templates\inc\_header.html:37
+msgid "Sergey & Company"
+msgstr ""
+
+#: .\templates\inc\_header.html:16 .\templates\inc\_header.html:40
+msgid "Teacher: "
+msgstr "Преподаватель: "
+
+#: .\templates\inc\_header.html:16 .\templates\inc\_header.html:41
+msgid "Teplyakov Sergey"
+msgstr "Тепляков Сергей"
+
+#: .\templates\inc\_header.html:16 .\templates\inc\_header.html:41
+msgid "click"
+msgstr "клик"
+
+#: .\templates\inc\_header_buttons.html:4
+msgid "Management"
+msgstr "Управление"
+
+#: .\templates\inc\_header_buttons.html:6
+msgid "Sign up"
+msgstr "Записаться"
+
+#: .\templates\inc\_header_buttons.html:10
+msgid "Log out"
+msgstr "Выйти"
+
+#~ msgid "Enter your phone or telegram"
+#~ msgstr "Введите Ваш номер телефона или телеграм"
