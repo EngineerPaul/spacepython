@@ -234,6 +234,7 @@ class CustomRegistrationView(CreateView):
 
         user.save()
         userdetail.save()
+        Token.objects.create(user=user)
         return user
 
     def check_unique(self, request, phone, telegram):
@@ -849,6 +850,7 @@ class RegistrationAPI(CreateAPIView):
 
         user.save()
         userdetail.save()
+        Token.objects.create(user=user)
         return user
 
     def check_unique(self, phone, telegram):
@@ -878,8 +880,10 @@ class GetTokenAPI(GenericAPIView):
             phone=serializer.data.get('phone'),
             telegram=serializer.data.get('telegram')  # like @nickname
         )
-        token = Token.objects.get(user=user)
+        if user is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
+        token = self.get_or_set_token(user)
         token_serializer = ReceivingTokenSerializer(data={"token": token.key})
         token_serializer.is_valid()
 
@@ -891,29 +895,34 @@ class GetTokenAPI(GenericAPIView):
     def get_user(self, phone: str, telegram: str):
         if phone and telegram:
             try:
-                user = User.objects.get(
+                return User.objects.get(
                     details__phone=phone,
                     details__telegram=telegram
                 )
             except Exception:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                return None
 
         elif phone:
             try:
-                user = User.objects.get(details__phone=phone)
+                return User.objects.get(details__phone=phone)
             except Exception:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                return None
 
         elif telegram:
             try:
-                user = User.objects.get(details__telegram=telegram)
+                return User.objects.get(details__telegram=telegram)
             except Exception:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                return None
 
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return None
 
-        return user
+    def get_or_set_token(self, user):
+        try:
+            token = Token.objects.get(user=user)
+        except Exception:
+            token = Token.objects.create(user=user)
+        return token
 
 
 class DeleteUserAPI(DestroyAPIView):
