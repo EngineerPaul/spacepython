@@ -18,9 +18,9 @@ class InlineAdmin(admin.TabularInline):
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ('id', 'username', 'first_name', )
-    list_display_links = ('id', 'username', 'first_name')
-    ordering = ('username', )
+    list_display = ('id', 'first_name', )
+    list_display_links = ('id', 'first_name', )
+    ordering = ('-id', )
     list_per_page = 50
     list_select_related = ('details',)
     inlines = [InlineAdmin]

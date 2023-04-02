@@ -229,7 +229,7 @@ msgstr "Блокировки времени"
 
 #: .\main_app\services.py:15
 msgid "Monday"
-msgstr "Поендельник"
+msgstr "Понедельник"
 
 #: .\main_app\services.py:16
 msgid "Tuesday"

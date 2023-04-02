@@ -22,6 +22,19 @@ class RegistrationSerializer(serializers.Serializer):
         ]
 
 
+class TokenRequestSerializer(serializers.Serializer):
+    """ Authorization token request """
+
+    phone = serializers.CharField(required=False)
+    telegram = serializers.CharField(required=False)
+
+
+class ReceivingTokenSerializer(serializers.Serializer):
+    """ Getting an authorization token """
+
+    token = serializers.CharField()
+
+
 class DelUserSerializer(serializers.ModelSerializer):
     """ Deletion user (admin only) """
 

@@ -6,7 +6,7 @@ from .views import (
     DeleteLessonView, LessonView, LessonByUserView,
     InfoView,
     SettingsAP, AddLessonAP, TimeBlockerAP, StudentsAP, StudentDetailAP,
-    UsersAPI, RegistrationAPI, RelevantLessonsAPI, LessonsViewSet,
+    UsersAPI, RegistrationAPI, GetTokenAPI, RelevantLessonsAPI, LessonsViewSet,
     LessonsAdminViewSet, RelevantLessonsAdminViewSet, DeleteUserAPI,
     TimeBlockAPI, TimeBlockAdminAPI, StudentAdminAPI
 )
@@ -46,6 +46,7 @@ urlpatterns = [
 
     # API
     path('api/registration', RegistrationAPI.as_view()),
+    path('api/get-token', GetTokenAPI.as_view()),
     path('api/get-users', UsersAPI.as_view()),
     path('api/get-relevant-lessons', RelevantLessonsAPI.as_view()),
     path('api/delete-user/<int:pk>/', DeleteUserAPI.as_view()),

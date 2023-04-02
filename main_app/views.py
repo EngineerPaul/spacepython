@@ -1,5 +1,6 @@
 from copy import deepcopy
 from datetime import date, timedelta, datetime
+import json
 
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -16,11 +17,13 @@ from django.contrib.auth.views import LogoutView
 
 from rest_framework import viewsets, status, mixins
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.generics import (
     ListAPIView, CreateAPIView, DestroyAPIView
 )
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 from .models import Lesson, UserDetail, TimeBlock, User
 from .forms import (
@@ -28,9 +31,10 @@ from .forms import (
     TimeBlockerAPForm, StudentUpdateForm
 )
 from .serializers import (
-    UserSerializer, LessonSerializer, LessonAdminSerializer,
-    RegistrationSerializer, DelUserSerializer,
-    TimeBlockSerializer, TimeBlockAdminSerializer, StudentAdminSerializer
+    UserSerializer, TokenRequestSerializer, ReceivingTokenSerializer,
+    LessonSerializer, LessonAdminSerializer, RegistrationSerializer,
+    DelUserSerializer, TimeBlockSerializer, TimeBlockAdminSerializer,
+    StudentAdminSerializer
 )
 from spacepython.constraints import (
     С_morning_time, С_morning_time_markup, C_evening_time_markup,
@@ -159,12 +163,16 @@ class CustomLoginView(TemplateView, FormMixin):
             user = self.model.objects.get(details__phone=field)
         except self.model.DoesNotExist:
             user = None
+        except self.model.MultipleObjectsReturned:
+            user = self.model.objects.filter(details__phone=field)[0]
 
         if not user:
             try:
                 user = self.model.objects.get(details__telegram=field)
             except self.model.DoesNotExist:
                 user = None
+            except self.model.MultipleObjectsReturned:
+                user = self.model.objects.filter(details__telegram=field)[0]
 
         return user
 
@@ -854,6 +862,58 @@ class RegistrationAPI(CreateAPIView):
         elif telegram in telegrams and telegram:
             return _("This telegram nickname already exists")
         return True
+
+
+class GetTokenAPI(GenericAPIView):
+    """ Getting an authorization token """
+
+    serializer_class = TokenRequestSerializer
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = self.get_user(
+            phone=serializer.data.get('phone'),
+            telegram=serializer.data.get('telegram')  # like @nickname
+        )
+        token = Token.objects.get(user=user)
+
+        token_serializer = ReceivingTokenSerializer(data={"token": token.key})
+        token_serializer.is_valid()
+
+        return Response(
+            token_serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+    def get_user(self, phone: str, telegram: str):
+        if phone and telegram:
+            try:
+                user = User.objects.get(
+                    details__phone=phone,
+                    details__telegram=telegram
+                )
+            except Exception:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+        elif phone:
+            try:
+                user = User.objects.get(details__phone=phone)
+            except Exception:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+        elif telegram:
+            try:
+                user = User.objects.get(details__telegram=telegram)
+            except Exception:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return user
 
 
 class DeleteUserAPI(DestroyAPIView):
