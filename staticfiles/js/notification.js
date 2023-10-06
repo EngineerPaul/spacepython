@@ -97,7 +97,7 @@
     async function show_notification(id, user_token) {
         if (!document.cookie.includes('notice=0')) {
             notice_info = await get_user_notice_info(domen, id, user_token)
-            if (notice_info['notice'] == true) {
+            if ((notice_info['notice'] == true) && (notice_info['amount_lesson'] >= 3)) {
                 let notification_field = document.getElementById('notification')
                 notification_field.style.display = 'flex'
                 notification_field.style.visibility = 'visible'
@@ -114,7 +114,6 @@
         setTimeout(() => {notification_field.style.display = 'none'}, 500)
         let now = new Date()
         let lifetime = 24*60*60 - (now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds())
-        lifetime = 2
         document.cookie = `notice=0;path=/;max-age=${lifetime}`
     }
 

@@ -58,7 +58,7 @@
     let id = "{{ request.user.id }}"
     let phone = "{{ request.user.details.phone }}"
     let telegram = "{{ request.user.details.telegram }}"
-    let domen = "http://" + location.host + "/"
+    let domen = location.protocol + "//" + location.host + "/"
     let token = '{{ csrf_token }}'
     let user_token = get_token(domen, id, phone, telegram, token)
 
