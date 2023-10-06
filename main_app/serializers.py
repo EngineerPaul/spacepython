@@ -135,3 +135,13 @@ class StudentAdminSerializer(serializers.Serializer):
                 setattr(instance, attr, value)
         instance.save()
         return instance
+
+
+class NotificationSerializer(serializers.Serializer):
+    """ Serializer for notification status (Authorized only) """
+
+    notice = serializers.BooleanField(source='details.notice')
+    amount_lesson = serializers.SerializerMethodField()
+
+    def get_amount_lesson(self, obj):
+        return Lesson.objects.filter(student=obj.pk).count()

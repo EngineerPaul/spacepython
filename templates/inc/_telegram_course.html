@@ -1,0 +1,90 @@
+{% load static %}
+
+<div id="notification" class="notification-frame"> 
+    <div>
+        <div class="notification-body">
+            <button type="button" class="notification btn-close" onclick="close_notification()"></button>
+            <img id="notification-main-img" class="notification-body-img" src="{% static 'img/telegram_course/telegram_course_computer_1.png' %}" alt="Оповещение">
+        </div>
+        <div class="notification-footer" style="position: relative; display: block;">          
+            <img id="notification-close-img" class="notification-footer-btn" src="{% static 'img/telegram_course/telegram_course_computer_2.png' %}" alt="Не показывать">
+            <a href="https://t.me/space_python_bot">
+                <img id="notification-link-img" class="notification-footer-btn" src="{% static 'img/telegram_course/telegram_course_computer_3.png' %}" alt="Начать">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/notification.js' %}"></script>
+<script>
+    /**
+     * changing CSS settings for different phone orientation
+    */
+    function toggleOrientation() {
+        if (window.orientation == undefined) {
+            return
+        }
+        if (window.orientation == 0) {
+            let mainImg = document.getElementById('notification-main-img')
+            mainImg.src = "{% static 'img/telegram_course/telegram_course_phone_1.png' %}"
+            mainImg.style['max-height'] = "calc(80vh*(7349/8000))"
+            mainImg.style['max-width'] = "calc(80vw)"
+            let closeImg = document.getElementById('notification-close-img')
+            closeImg.src = "{% static 'img/telegram_course/telegram_course_phone_2.png' %}"
+            closeImg.style['max-height'] = "calc(80vh*(651/8000))"
+            closeImg.style['max-width'] = "calc(80vw/2)"
+            let linkImg = document.getElementById('notification-link-img')
+            linkImg.src = "{% static 'img/telegram_course/telegram_course_phone_3.png' %}"
+            linkImg.style['max-height'] = "calc(80vh*(651/8000))"
+            linkImg.style['max-width'] = "calc(80vw/2)"
+        } else if ((window.orientation == 90) || (window.orientation == -90)) {
+            let mainImg = document.getElementById('notification-main-img')
+            mainImg.src = "{% static 'img/telegram_course/telegram_course_computer_1.png' %}"
+            mainImg.style['max-height'] = "calc(60vh*(3879/4500))"
+            mainImg.style['max-width'] = "calc(60vw)"
+            let closeImg = document.getElementById('notification-close-img')
+            closeImg.src = "{% static 'img/telegram_course/telegram_course_computer_2.png' %}"
+            closeImg.style['max-height'] = "calc(60vh*(621/4500))"
+            closeImg.style['max-width'] = "calc(60vw/2)"
+            let linkImg = document.getElementById('notification-link-img')
+            linkImg.src = "{% static 'img/telegram_course/telegram_course_computer_3.png' %}"
+            linkImg.style['max-height'] = "calc(60vh*(621/4500))"
+            linkImg.style['max-width'] = "calc(60vw/2)"
+        }
+    }
+
+
+    // Variables
+    let id = "{{ request.user.id }}"
+    let phone = "{{ request.user.details.phone }}"
+    let telegram = "{{ request.user.details.telegram }}"
+    let domen = "http://" + location.host + "/"
+    let token = '{{ csrf_token }}'
+    let user_token = get_token(domen, id, phone, telegram, token)
+
+
+    // EventListener
+    notification_close_img = document.getElementById('notification-close-img')
+    notification_close_img.addEventListener('click', change_notice_status.bind(this, domen, id, user_token, token, status=false))
+    
+    notification.addEventListener('click', function(event) {
+        if (event.target == event.currentTarget) {
+            close_notification()
+        }
+    }, false);
+
+    window.addEventListener("keydown", function(event) {
+        if (event.keyCode === 27) {
+            close_notification()
+        }
+    }, false);
+
+    window.addEventListener("orientationchange", function() {
+        toggleOrientation()
+    }, false);
+
+
+    // Run
+    toggleOrientation()
+    show_notification(id, user_token)
+</script>

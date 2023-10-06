@@ -40,6 +40,7 @@ class UserDetail(models.Model):
                                      default=C_salary_common)
     high_cost = models.IntegerField(blank=True, null=True,
                                     default=C_salary_high)
+    notice = models.BooleanField(blank=False, null=False, default=True)
 
     class Meta:
         verbose_name = _('Details')

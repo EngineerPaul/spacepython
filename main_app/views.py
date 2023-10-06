@@ -34,7 +34,7 @@ from .serializers import (
     UserSerializer, TokenRequestSerializer, ReceivingTokenSerializer,
     LessonSerializer, LessonAdminSerializer, RegistrationSerializer,
     DelUserSerializer, TimeBlockSerializer, TimeBlockAdminSerializer,
-    StudentAdminSerializer
+    StudentAdminSerializer, NotificationSerializer
 )
 from spacepython.constraints import (
     С_morning_time, С_morning_time_markup, C_evening_time_markup,
@@ -1039,3 +1039,38 @@ class StudentAdminAPI(mixins.RetrieveModelMixin,
     queryset = User.objects.select_related('details').filter(is_staff=False)
     serializer_class = StudentAdminSerializer
     permission_classes = [IsAdminUser]
+
+#################################################################
+#                    END ADMIN PANEL (AP) API                   #
+#################################################################
+
+
+class NoticeByUserAPI(mixins.RetrieveModelMixin,
+                      mixins.UpdateModelMixin,
+                      viewsets.GenericViewSet):
+    """ ViewSet to receive and change notification status by user """
+
+    queryset = User.objects.select_related('details').filter(is_staff=False)
+    serializer_class = NotificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        if not isinstance(request.data['notice'], bool):
+            new_notice = json.loads(request.data['notice'])
+        else:
+            new_notice = request.data['notice']
+        if not ((new_notice is False) or (new_notice is True)):
+            return Response({"error": "Wrong value"})
+
+        pk = request.user.pk
+        try:
+            instance = User.objects.select_related('details').get(pk=pk)
+        except BaseException:
+            return Response({"error": "Object does not exists"})
+
+        instance.details.notice = new_notice
+        instance.details.save()
+        if new_notice:
+            return Response("Notification works")
+        else:
+            return Response("Notification doesn't work")
