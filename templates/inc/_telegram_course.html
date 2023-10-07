@@ -6,7 +6,7 @@
             <button type="button" class="notification btn-close" onclick="close_notification()"></button>
             <img id="notification-main-img" class="notification-body-img" src="{% static 'img/telegram_course/telegram_course_computer_1.png' %}" alt="Оповещение">
         </div>
-        <div class="notification-footer" style="position: relative; display: block;">          
+        <div class="notification-footer">
             <img id="notification-close-img" class="notification-footer-btn" src="{% static 'img/telegram_course/telegram_course_computer_2.png' %}" alt="Не показывать">
             <a href="https://t.me/space_python_bot">
                 <img id="notification-link-img" class="notification-footer-btn" src="{% static 'img/telegram_course/telegram_course_computer_3.png' %}" alt="Начать">
@@ -58,7 +58,7 @@
     let id = "{{ request.user.id }}"
     let phone = "{{ request.user.details.phone }}"
     let telegram = "{{ request.user.details.telegram }}"
-    let domen = location.protocol + "//" + location.host + "/"
+    let domen = location.origin + "/"
     let token = '{{ csrf_token }}'
     let user_token = get_token(domen, id, phone, telegram, token)
 

@@ -65,6 +65,7 @@ float: none;
     height: 0;
 }
 
+/* Telegram notification */
 .notification-frame {
     position: fixed;
     display: none;
@@ -94,9 +95,12 @@ float: none;
     font-size: 20px;
     z-index: 2;
 }
-
 .notification-frame .notification.btn-close:focus {
     box-shadow: none;
+}
+.notification-frame .notification-footer {
+    position: relative;
+    display: block;
 }
 .notification-frame .notification-footer-btn {
     display: inline;
@@ -114,4 +118,21 @@ float: none;
 @keyframes close-notice {
     0% {background-color: rgba(0,0,0,.5); opacity: 1;}
     100% {background-color: rgba(0,0,0,0); opacity: 0;}
+}
+
+/* High Cost Notification */
+.notification-frame.high-cost {
+    left: 0;
+}
+.notification-frame.high-cost .notification-body-img {
+    max-height: calc(60vh*(4004/4500));
+}
+.notification-frame.high-cost .notification-footer-btn {
+    max-height: calc(60vh*(496/4500));
+}
+.notification-frame.high-cost .notification-body-img.increased {
+    max-width: calc(90vw);
+}
+.notification-frame.high-cost .notification-footer-btn.increased {
+    max-width: calc(90vw/2);
 }

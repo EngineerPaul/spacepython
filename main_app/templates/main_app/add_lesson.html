@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block content %}
 <h3>{% translate "To schedule" %}</h3>
 <div class="row">
     <div class="col" style="max-width: 400px;">
-        <form method="post">
+        <form id="lessonForm" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <p>
                 <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#M_sign_up" style="color: black; font-size: 9pt;">{% translate "How to take time?" %}</a><br>
                 <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#M_cost" style="color: black; font-size: 9pt;">{% translate "How to find out the cost?" %}</a>
             </p>
-            <button type='submit' class='btn btn-primary btn-block'>{% translate "Add lesson" %}</button>
+            <button id='createLessonBtn' type='submit' class='btn btn-primary btn-block'>{% translate "Add lesson" %}</button>
         </form>
     </div> 
 </div>
@@ -92,4 +93,19 @@
         </div>
     </div>
 </div>
+
+<div id="highCostNotification" class="notification-frame high-cost"> 
+    <div>
+        <div class="notification-body">
+            <button type="button" class="notification btn-close" onclick="closeHightCostNotification()"></button>
+            <img id="highCostMainImg" class="notification-body-img" src="{% static 'img/high_cost_banner/high_cost_banner_main.png' %}" alt="Оповещение">
+        </div>
+        <div class="notification-footer">          
+            <img id="highCostCloseBtn" class="notification-footer-btn" src="{% static 'img/high_cost_banner/high_cost_banner_lbtn.png' %}" alt="Другой день" onclick="closeHightCostNotification()">
+            <img id="highCostContinueBtn" class="notification-footer-btn" src="{% static 'img/high_cost_banner/high_cost_banner_rbtn.png' %}" alt="Записаться" onclick="lessonForm.submit()">
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/high_cost_notification.js' %}"></script>
 {% endblock content %}
