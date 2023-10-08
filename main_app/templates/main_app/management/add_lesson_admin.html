@@ -15,7 +15,7 @@
                         <form id="adminAddLessonForm" method="post">
                             {% csrf_token %}
                             <p>
-                                <label for="id_filter" class="form-label">Фильтр никнеймов</label>
+                                <label for="id_filter" class="form-label">Фильтр никнеймов:</label>
                                 <input type="text" name="filter" class="form-control" placeholder="username" id="id_filter">
                             </p>
                             {{ form.as_p }}
@@ -85,13 +85,19 @@
         }
     }
 
-    id_filter.addEventListener("keydown", function(event) {
-        if ((event.key.match(/[a-zA-Z0-9_ \-]/)) && event.key.length==1) {
-            updateUserList(id_filter.value+event.key, copy_select)
-        } else if (event.key == 'Backspace') {
-            updateUserList(id_filter.value.slice(0,-1), copy_select)
-        }
+    id_filter.addEventListener("input", function (event) {
+        updateUserList(id_filter.value, copy_select)
+        selectAloneOption()
     })
+
+    function selectAloneOption() {
+        let select =  adminAddLessonForm.student
+        if (select.length == 1) {
+            select.options['0'].selected =  true
+        } else {
+            select.options.selectedIndex = -1
+        }
+    }
 
     let copy_select = Object.assign({}, adminAddLessonForm.student)
 
