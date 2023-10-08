@@ -12,8 +12,12 @@
                 <h3>{% translate "To schedule" %}</h3>
                 <div class="row">
                     <div class="col" style="max-width: 400px;">
-                        <form method="post">
+                        <form id="adminAddLessonForm" method="post">
                             {% csrf_token %}
+                            <p>
+                                <label for="id_filter" class="form-label">Фильтр никнеймов</label>
+                                <input type="text" name="filter" class="form-control" placeholder="username" id="id_filter">
+                            </p>
                             {{ form.as_p }}
                             <p>
                                 <a href="#" class="thumbnail" data-bs-toggle="modal" data-bs-target="#M_cost" style="color: black; font-size: 9pt;">{% translate "How to find out the cost?" %}</a><br>
@@ -65,4 +69,31 @@
     </div>
 </div>
 
+<script>
+
+    function updateUserList(filter, copy_select) {
+        let select =  adminAddLessonForm.student
+        let i = 0
+        while (i < select.length) {
+            select[i].remove()
+        }
+
+        for (let opt in copy_select) {
+            if (copy_select[opt].text.startsWith(filter)) {
+                select.add(copy_select[opt])
+            }
+        }
+    }
+
+    id_filter.addEventListener("keydown", function(event) {
+        if ((event.key.match(/[a-zA-Z0-9_ \-]/)) && event.key.length==1) {
+            updateUserList(id_filter.value+event.key, copy_select)
+        } else if (event.key == 'Backspace') {
+            updateUserList(id_filter.value.slice(0,-1), copy_select)
+        }
+    })
+
+    let copy_select = Object.assign({}, adminAddLessonForm.student)
+
+</script>
 {% endblock content %}
