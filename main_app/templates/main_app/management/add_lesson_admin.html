@@ -79,7 +79,8 @@
         }
 
         for (let opt in copy_select) {
-            if (copy_select[opt].text.startsWith(filter)) {
+            usernameRegExp = new RegExp(`^${filter}.{0,}`, 'i')
+            if (copy_select[opt].text.match(usernameRegExp)) {
                 select.add(copy_select[opt])
             }
         }

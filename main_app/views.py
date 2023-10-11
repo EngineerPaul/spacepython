@@ -1,6 +1,7 @@
 from copy import deepcopy
 from datetime import date, timedelta, datetime
 import json
+import requests
 
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -41,6 +42,7 @@ from spacepython.constraints import (
     C_evening_time, C_salary_common, C_salary_high, C_lesson_threshold,
     C_timedelta, C_datedelta
 )
+from spacepython.settings import env
 from .services import get_weekdays
 
 
@@ -364,6 +366,8 @@ class AddLessonView(LoginRequiredMixin, CreateView):
 
         lesson.save()
 
+        self.send_telegram_notice(request.user.pk, date, time)
+
         if lesson.salary == user_detail.high_cost:
             msg = _(
                 "Lesson successfully created. Date: {0}. "
@@ -386,6 +390,25 @@ class AddLessonView(LoginRequiredMixin, CreateView):
             msg
         )
         return HttpResponseRedirect(reverse_lazy(self.success_url))
+
+    def send_telegram_notice(self, student_id, date, time):
+        student = User.objects.select_related('details').get(id=student_id)
+        if student.details.alias:
+            username = f"{student.details.alias} ({student.first_name})"
+        else:
+            username = f"{student.first_name}"
+        method = 'sendMessage'
+
+        response = requests.post(
+            url='https://api.telegram.org/bot{0}/{1}'.format(
+                env('TELEGRAM_TOKEN'), method),
+            data={
+                'chat_id': env('TELEGRAM_CHAT_ID'),
+                'text': f'Ученик {username} записался на урок. '
+                        f'Дата: {date}. Время: {str(time)[0:-3]}.'
+            }
+        )
+        return response.json()
 
 
 class DeleteLessonView(LoginRequiredMixin, DeleteView):
@@ -599,6 +622,8 @@ class AddLessonAP(AdminAccessMixin, CreateView):
 
         lesson.save()
 
+        self.send_telegram_notice(form.cleaned_data['student'], date, time)
+
         if lesson.salary == user_detail.high_cost:
             msg = _(
                 "Lesson successfully created. Date: {0}. "
@@ -621,6 +646,25 @@ class AddLessonAP(AdminAccessMixin, CreateView):
             msg
         )
         return HttpResponseRedirect(reverse_lazy(self.success_url))
+
+    def send_telegram_notice(self, student_id, date, time):
+        student = User.objects.select_related('details').get(id=student_id)
+        if student.details.alias:
+            username = f"{student.details.alias} ({student.first_name})"
+        else:
+            username = f"{student.first_name}"
+        method = 'sendMessage'
+
+        response = requests.post(
+            url='https://api.telegram.org/bot{0}/{1}'.format(
+                env('TELEGRAM_TOKEN'), method),
+            data={
+                'chat_id': env('TELEGRAM_CHAT_ID'),
+                'text': f'Ученик {username} записался на урок. '
+                        f'Дата: {date}. Время: {str(time)[0:-3]}.'
+            }
+        )
+        return response.json()
 
 
 class TimeBlockerAP(AdminAccessMixin, FormMixin, ListView):
