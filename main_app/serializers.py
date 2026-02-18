@@ -25,8 +25,8 @@ class RegistrationSerializer(serializers.Serializer):
 class TokenRequestSerializer(serializers.Serializer):
     """ Authorization token request """
 
-    phone = serializers.CharField(required=False)
-    telegram = serializers.CharField(required=False)
+    phone = serializers.CharField(required=False, allow_blank=True)
+    telegram = serializers.CharField(required=False, allow_blank=True)
 
 
 class ReceivingTokenSerializer(serializers.Serializer):

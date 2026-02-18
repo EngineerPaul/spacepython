@@ -366,7 +366,7 @@ class AddLessonView(LoginRequiredMixin, CreateView):
 
         lesson.save()
 
-        self.send_telegram_notice(request.user.pk, date, time)
+        # self.send_telegram_notice(request.user.pk, date, time)
 
         if lesson.salary == user_detail.high_cost:
             msg = _(
@@ -622,7 +622,7 @@ class AddLessonAP(AdminAccessMixin, CreateView):
 
         lesson.save()
 
-        self.send_telegram_notice(form.cleaned_data['student'], date, time)
+        # self.send_telegram_notice(form.cleaned_data['student'], date, time)
 
         if lesson.salary == user_detail.high_cost:
             msg = _(
@@ -921,8 +921,8 @@ class GetTokenAPI(GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         user = self.get_user(
-            phone=serializer.data.get('phone'),
-            telegram=serializer.data.get('telegram')  # like @nickname
+            phone=serializer.validated_data.get('phone'),
+            telegram=serializer.validated_data.get('telegram')  # like @nickname
         )
         if user is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -948,7 +948,7 @@ class GetTokenAPI(GenericAPIView):
 
         elif phone:
             try:
-                return User.objects.get(details__phone=phone)
+                return User.objects.filter(details__phone=phone).last()
             except Exception:
                 return None
 
