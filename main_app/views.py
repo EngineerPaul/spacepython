@@ -42,7 +42,7 @@ from spacepython.constraints import (
     C_evening_time, C_salary_common, C_salary_high, C_lesson_threshold,
     C_timedelta, C_datedelta
 )
-from spacepython.settings import env
+from spacepython.settings import env, CHANGED_DATES
 from .services import get_weekdays
 
 
@@ -55,6 +55,8 @@ class LessonView(ListView):
 
     def get_queryset(self):
         today = date.today()
+        if CHANGED_DATES:
+            today = date(2026, 1, 1)
         lessons = self.model.objects.filter(
             date__gte=today
         ).select_related(
@@ -87,7 +89,21 @@ class LessonView(ListView):
                 exists = lessons or blocked_times
                 day = exists[0].date
                 query[day].append(exists.pop(0))
-        return query
+        if CHANGED_DATES:
+            changed_query = self.key_substitution(query)
+            return changed_query
+        else:
+            return query
+    
+    def key_substitution(self, query: dict) -> dict:
+        """ Меняем даты в ключах заглушки (смещаяем с 2026-01-01 на сегодня) """
+        today = date.today()
+        output_query = {}
+        i = 0
+        for key, value in query.items():
+            output_query[today+timedelta(days=i)] = value
+            i += 1
+        return output_query
 
 
 class LessonByUserView(LoginRequiredMixin, ListView):
