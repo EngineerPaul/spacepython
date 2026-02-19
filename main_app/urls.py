@@ -15,11 +15,14 @@ from .views import (
 router = DefaultRouter()
 router.register('api/set-my-lessons', LessonsViewSet,
                 basename='my_lessons')
-router.register('api/all-lessons', LessonsAdminViewSet)
-router.register('api/all-relevant-lessons', RelevantLessonsAdminViewSet)
+router.register('api/all-lessons', LessonsAdminViewSet,
+                basename='all_lessons')
+router.register('api/all-relevant-lessons', RelevantLessonsAdminViewSet,
+                basename='all_relevant_lessons')
 router.register('api/admin/admin-panel/timeblock', TimeBlockAdminAPI)
 router.register('api/admin/admin-panel/students', StudentAdminAPI)
-router.register('api/notification', NoticeByUserAPI)
+router.register('api/notification', NoticeByUserAPI,
+                basename='notfication')
 
 urlpatterns = [
     path('', LessonView.as_view(), name='home_url'),
