@@ -23,7 +23,6 @@ jobs:
           printf '%s\n' \
             'SECRET_KEY=ci-not-a-secret' \
             'DEBUG=True' \
-            'URL_PREFIX=extra/calendar' \
             'CHANGED_DATES=False' \
             > spacepython/.env
 
@@ -51,7 +50,10 @@ jobs:
           SECRET_KEY: ci-not-a-secret
           DEBUG: "True"
           CHANGED_DATES: "False"
-        run: python manage.py test
+        run: |
+          # Тесты рассчитаны на пути без префикса (/login, а не /extra/calendar/login)
+          export URL_PREFIX=
+          python manage.py test
 
   deploy:
     needs: ci
