@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
@@ -12,5 +13,5 @@ urlpatterns = [
 ]
 
 urlpatterns = [
-    path('extra/calendar/', include(urlpatterns)),
+    path(f'{settings.URL_PREFIX}/', include(urlpatterns)),
 ]

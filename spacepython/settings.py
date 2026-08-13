@@ -19,6 +19,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
+URL_PREFIX = env('URL_PREFIX', default='extra/calendar').strip('/')
 CHANGED_DATES = True  # измененеие дат при выводе напоминаний для резюме
 
 ALLOWED_HOSTS = ['*']
@@ -125,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/extra/calendar/static/'
+STATIC_URL = f'/{URL_PREFIX}/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'spacepython/static')
