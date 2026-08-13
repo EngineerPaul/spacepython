@@ -18,7 +18,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Prepare .env for compose
-        run: cp .env.example spacepython/.env
+        run: |
+          mkdir -p spacepython
+          printf '%s\n' \
+            'SECRET_KEY=ci-not-a-secret' \
+            'DEBUG=True' \
+            'URL_PREFIX=extra/calendar' \
+            'CHANGED_DATES=False' \
+            > spacepython/.env
 
       - name: Ensure external network exists
         run: docker network inspect extra_services >/dev/null 2>&1 || docker network create extra_services
