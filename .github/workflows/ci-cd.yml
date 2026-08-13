@@ -1,0 +1,75 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare .env for compose
+        run: cp .env.example spacepython/.env
+
+      - name: Ensure external network exists
+        run: docker network inspect extra_services >/dev/null 2>&1 || docker network create extra_services
+
+      - name: Validate Compose file
+        run: docker compose config
+
+      - name: Build image
+        run: docker compose build
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Django tests
+        env:
+          SECRET_KEY: ci-not-a-secret
+          DEBUG: "True"
+          CHANGED_DATES: "False"
+        run: python manage.py test
+
+  deploy:
+    needs: ci
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            set -e
+            export DEPLOY_PATH='${{ secrets.DEPLOY_PATH }}'
+            if [ -z "$DEPLOY_PATH" ]; then export DEPLOY_PATH="/var/www/Diary-project/spacepython"; fi
+            cd "$DEPLOY_PATH"
+            docker network inspect extra_services >/dev/null 2>&1 || docker network create extra_services
+            git fetch origin master
+            git reset --hard origin/master
+            docker compose up -d --build
+            docker image prune -f

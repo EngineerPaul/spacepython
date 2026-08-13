@@ -1,15 +1,30 @@
 services:
   web:
     build: .
-    ports:
-      - "8000:8000"
+    container_name: calendar
+    restart: unless-stopped
     env_file:
       - ./spacepython/.env
     environment:
-      DEBUG: ${DEBUG:-True}
-    volumes:
-      - .:/app
-    command: >
-      sh -c "python manage.py migrate --noinput &&
-             python manage.py collectstatic --noinput &&
-             python manage.py runserver 0.0.0.0:8000"
+      DEBUG: ${DEBUG:-False}
+      URL_PREFIX: ${URL_PREFIX:-extra/calendar}
+    # ports:
+    #   - "8000:8000"
+    command:
+      - sh
+      - -c
+      - >-
+          python manage.py migrate --noinput &&
+          python manage.py collectstatic --noinput &&
+          gunicorn spacepython.wsgi:application
+          --bind 0.0.0.0:8000
+          --workers 1
+          --timeout 60
+    networks:
+      - extra_net
+      - default
+
+networks:
+  extra_net:
+    external: true
+    name: extra_services

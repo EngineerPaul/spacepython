@@ -12,6 +12,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
 ]
 
-urlpatterns = [
-    path(f'{settings.URL_PREFIX}/', include(urlpatterns)),
-]
+if settings.URL_PREFIX:
+    urlpatterns = [
+        path(f'{settings.URL_PREFIX}/', include(urlpatterns)),
+    ]
